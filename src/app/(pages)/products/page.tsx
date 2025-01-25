@@ -5,15 +5,12 @@ import ShopGrid from "@/app/(pages)/products/components/ShopGrid";
 import ShopList from "@/app/(pages)/products/components/ShopList";
 import { client } from "@/sanity/lib/client";
 import { Product } from "@/types/types";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 
 import { useSearchParams } from "next/navigation";
 import PinkButton from "@/components/project/PinkButton";
 import Link from "next/link";
-// const filter = {
-//     brand:["flippingYoungRepurposed"]
-// }
-const Products = () => {
+const ProductsPage = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search")?.toLocaleLowerCase();
   const [toggleFilterSidebar, setToggleFilterSidebar] = useState(false);
@@ -175,6 +172,14 @@ const Products = () => {
         )}
       </div>
     </div>
+  );
+};
+
+const Products = () => {
+  return (
+    <Suspense fallback={<p>Loading analytics...</p>}>
+      <ProductsPage />
+    </Suspense>
   );
 };
 
