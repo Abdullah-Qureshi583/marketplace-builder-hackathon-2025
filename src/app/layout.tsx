@@ -2,7 +2,21 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { Josefin_Sans } from "next/font/google";
+
+import Navbar from "@/components/project/Navbar";
+import Header from "@/components/project/Header";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Footer from "@/components/project/Footer";
+import ImageAutoSlider from "@/components/project/ImageAutoSlider";
+import AddToCartSidebar from "@/components/project/AddToCartSidebar";
+import ShoppingCartProvider from "@/components/project/ShoppingCartProvider";
+
 const inter = Inter({ subsets: ["latin"] });
+
+const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +30,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={josefinSans.className}>
+        <ShoppingCartProvider>
+          <AddToCartSidebar />
+          <Header />
+          <Navbar />
+          {children}
+          <ImageAutoSlider />
+          <Footer />
+        </ShoppingCartProvider>
+      </body>
     </html>
   );
 }
