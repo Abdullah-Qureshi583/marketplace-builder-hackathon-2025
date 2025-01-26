@@ -7,7 +7,7 @@ import { HiMagnifyingGlassPlus } from "react-icons/hi2";
 import { FaSearchPlus } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { CiHeart } from "react-icons/ci";
-import AddToCartFunction from "@/app/(pages)/products/[id]/components/AddToCartFunction";
+import AddToCartFunction from "@/components/project/AddToCartFunction";
 import { urlFor } from "@/sanity/lib/image";
 import { useRouter } from "next/navigation";
 

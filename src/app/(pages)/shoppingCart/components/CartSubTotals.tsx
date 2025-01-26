@@ -13,7 +13,7 @@ const CartSubTotals = () => {
       <div className="w-full h-[2px] bg-[#E8E6F1] mb-6"></div>
       <div className="flex justify-between mb-2">
         <span className="">Total:</span>
-        <span className="">£325.00</span>
+        <span className="">$</span>
       </div>
       <div className="w-full h-[2px] bg-[#E8E6F1] mb-6"></div>
       <div className="flex items-start  gap-x-2">

@@ -22,7 +22,7 @@ const CalculateShippingCard = () => {
           className="placeholder:text-subText text-black mt-4 bg-transparent border-b-2 border-subText focus-within:outline-none focus-within:border-pPink  w-full  h-12 text-lg"
         />
 
-        <Link href="/pages/calculateShipping" className="mt-6">
+        <Link href="/calculateShipping" className="mt-6">
           <PinkButton>Calculate Shipping</PinkButton>
         </Link>
       </div>

@@ -6,7 +6,7 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 import PinkButton from "@/components/project/PinkButton";
 import { CiHeart } from "react-icons/ci";
-import AddToCartFunction from "./AddToCartFunction";
+import AddToCartFunction from "../../../../../components/project/AddToCartFunction";
 
 export default function ShowImage({ product }: { product: Product }) {
   return (

@@ -6,7 +6,13 @@ import { Josefin_Sans } from "next/font/google";
 
 import Navbar from "@/components/project/Navbar";
 import Header from "@/components/project/Header";
-
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "@/components/project/Footer";
@@ -30,16 +36,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={josefinSans.className}>
-        <ShoppingCartProvider>
-          <AddToCartSidebar />
-          <Header />
-          <Navbar />
-          {children}
-          <ImageAutoSlider />
-          <Footer />
-        </ShoppingCartProvider>
-      </body>
+      <ClerkProvider>
+        <body className={josefinSans.className}>
+          <ShoppingCartProvider>
+            <AddToCartSidebar />
+            <Header />
+            <Navbar />
+            {children}
+            <ImageAutoSlider />
+            <Footer />
+          </ShoppingCartProvider>
+        </body>
+      </ClerkProvider>
     </html>
   );
 }

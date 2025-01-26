@@ -18,7 +18,7 @@ const Input = ({
 };
 export default function CalcShipLeft() {
   return (
-    <div className="col-span-2 bg-dblLightPurple px-8 py-16">
+    <div className="col-span-2 bg-dblLightPurple px-8 py-16 h-fit">
       <div className="flex flex-col gap-4 mb-24">
         <div className="flex flex-col md:flex-row justify-center   md:justify-between items-center">
           <h2 className="text-lg font-semibold ">Contact Information</h2>

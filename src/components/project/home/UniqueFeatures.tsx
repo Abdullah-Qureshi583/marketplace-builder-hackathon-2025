@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Product } from "@/types/types";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import AddToCartFunction from "@/app/(pages)/products/[id]/components/AddToCartFunction";
+import AddToCartFunction from "@/components/project/AddToCartFunction";
 
 const points = [
   {

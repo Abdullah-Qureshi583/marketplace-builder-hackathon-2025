@@ -9,7 +9,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { HiMagnifyingGlassPlus } from "react-icons/hi2";
 import { IconType } from "react-icons/lib";
 import PinkButton from "../../../../components/project/PinkButton";
-import AddToCartFunction from "@/app/(pages)/products/[id]/components/AddToCartFunction";
+import AddToCartFunction from "@/components/project/AddToCartFunction";
 
 export default function ShopList({ products }: { products: Product[] }) {
   const router = useRouter();

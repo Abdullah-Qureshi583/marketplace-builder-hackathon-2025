@@ -1,16 +1,8 @@
 "use client";
 import React from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useShoppingCart } from "use-shopping-cart";
 import Image from "next/image";
-import { CartItemProps } from "@/types/types";
 import { urlFor } from "@/sanity/lib/image";
 import PinkButton from "./PinkButton";
 import Link from "next/link";
