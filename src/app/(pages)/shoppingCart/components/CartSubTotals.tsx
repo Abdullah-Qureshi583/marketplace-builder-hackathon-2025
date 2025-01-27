@@ -11,7 +11,7 @@ const CartSubTotals = () => {
         <span className="">${totalPrice?.toFixed(2)}</span>
       </div>
       <div className="w-full h-[2px] bg-[#E8E6F1] mb-6"></div>
-      <div className="flex justify-between mb-2">
+      {/* <div className="flex justify-between mb-2">
         <span className="">Total:</span>
         <span className="">$</span>
       </div>
@@ -29,7 +29,7 @@ const CartSubTotals = () => {
       </div>
       <button className="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600">
         Proceed to Checkout
-      </button>
+      </button> */}
     </div>
   );
 };

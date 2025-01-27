@@ -6,7 +6,7 @@ const ShoppingCartProvider = ({ children }: { children: React.ReactNode }) => {
     <CartProvider
       mode="payment"
       cartMode="client-only"
-      stripe={process.env.NEXT_PUBLIC_STRIPE_KEY as string}
+      stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string}
       successUrl="stripe.com"
       cancelUrl="twitter.com/dayhaysoos"
       currency="USD"
