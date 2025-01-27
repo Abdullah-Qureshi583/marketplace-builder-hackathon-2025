@@ -1,4 +1,3 @@
-"use client"
 import DiscountItems from "@/components/project/home/DiscountItems";
 import FeaturedProducts from "@/components/project/home/featuredProducts/FeaturedProducts";
 import Hero from "@/components/project/home/Hero";
@@ -7,17 +6,12 @@ import TopCategories from "@/components/project/home/TopCategories";
 import TrendingProducts from "@/components/project/home/TrendingProducts";
 import UniqueFeatures from "@/components/project/home/UniqueFeatures";
 import WhatShopexOffer from "@/components/project/home/WhatShopexOffer";
-import Login from "@/components/project/Login";
-import { SignIn, SignUp, useUser } from "@clerk/nextjs";
 
 const Home = () => {
-
-  const { isSignedIn } = useUser();
-
   return (
     <>
       <Hero />
-       {/* <Login /> */}
+      {/* <Login /> */}
       <div className="container mx-auto p-4 max-w-[1180px] ">
         <FeaturedProducts />
         <LatestProducts />
@@ -29,7 +23,6 @@ const Home = () => {
         <DiscountItems />
         <TopCategories />
       </div>
-
     </>
   );
 };

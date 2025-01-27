@@ -15,7 +15,7 @@ export default function ShopList({ products }: { products: Product[] }) {
   const router = useRouter();
 
   return (
-    <div className="space-y-5  w-full">
+    <div className="space-y-5  flex flex-col items-center justify-center w-full">
       {products.map((chair) => (
         <div
           key={chair.id}

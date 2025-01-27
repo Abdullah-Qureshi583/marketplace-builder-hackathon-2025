@@ -34,9 +34,7 @@ export default function CalcShipLeft({
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [apartment, setApartment] = useState("");
-  const [city, setCity] = useState(
-    searchParams.city ? searchParams.city : ""
-  );
+  const [city, setCity] = useState(searchParams.city ? searchParams.city : "");
   const [country, setCountry] = useState(
     searchParams.country ? searchParams.country : ""
   );

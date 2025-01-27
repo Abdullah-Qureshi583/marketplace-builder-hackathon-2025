@@ -13,12 +13,12 @@ import Link from "next/link";
 const ProductsPage = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search")?.toLocaleLowerCase();
-  const [toggleFilterSidebar, setToggleFilterSidebar] = useState(false);
-  const [viewType, setViewType] = useState<"grid" | "list">("grid");
-  const [productFilter, setProductFilter] = useState<any>({});
 
+  const [toggleFilterSidebar, setToggleFilterSidebar] = useState(false);
+  const [viewType, setViewType] = useState<string>("grid");
+  const [productFilter, setProductFilter] = useState<any>({});
   const [products, setProducts] = useState<Product[]>([]);
-  // this function will only be called at the start or if the user search in search bar
+
   useEffect(() => {
     const isSearchingForFeaturedProducts = search?.includes("feature");
     const priceRangeArray =
@@ -43,6 +43,7 @@ const ProductsPage = () => {
             };
           })
         : [];
+
     const selectedProductstoFilter = `
 
     ${
@@ -118,6 +119,7 @@ const ProductsPage = () => {
                     : ""
               }
     `;
+
     (async () => {
       const query = `*[
         _type == "product" &&
@@ -153,19 +155,31 @@ const ProductsPage = () => {
       {/* shop  */}
       <div className=" flex gap-3 ">
         {toggleFilterSidebar && (
-          <ProductFilterSidebar setProductFilter={setProductFilter} />
+          <ProductFilterSidebar
+            setIsOpen={setToggleFilterSidebar}
+            isOpen={toggleFilterSidebar}
+            setProductFilter={setProductFilter}
+          />
         )}
-
         {products.length > 0 ? (
-          viewType === "grid" ? (
-            <ShopGrid products={products} />
-          ) : viewType === "list" ? (
-            <ShopList products={products} />
-          ) : null
+          <div className="flex flex-col gap-4 items-start w-full">
+            {viewType === "grid" ? (
+              <ShopGrid products={products} />
+            ) : viewType === "list" ? (
+              <ShopList products={products} />
+            ) : null}
+            {/*show the clear filter if there is filter applied and prodects are present  */}
+            {Object.keys(productFilter).length > 0 && (
+              <div onClick={() => setProductFilter({})} className="">
+                <PinkButton>Clear Filter</PinkButton>
+              </div>
+            )}
+          </div>
         ) : (
-          <div className="text-3xl font-bold text-center text-darkTextBlue w-full mt-6 flex gap-4 flex-col items-center ">
-            <p>No Result Found of your Search</p>
-            <Link href="/products">
+          // show when there is no product according to filter applied
+          <div className="text-3xl font-bold text-center text-darkTextBlue w-full mt-6 flex gap-4 flex-col items-center">
+            <p>No Result Found for your Search</p>
+            <Link href="/products" onClick={() => setProductFilter({})}>
               <PinkButton>Explore More Products</PinkButton>
             </Link>
           </div>
