@@ -91,7 +91,7 @@ const StripePayment = () => {
   return (
     <div>
       <h1 className="text-6xl font-bold text-center">
-        Ali Jawwad has requested $ {amount}
+        Hecto requested you to pay ${amount} to place your order
       </h1>
 
       <Elements
