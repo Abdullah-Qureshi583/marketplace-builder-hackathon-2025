@@ -98,8 +98,11 @@ export default function RelatedProducts({
       </h5>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {relatedProducts?.map((product) => (
-          <div key={product.id} className=" rounded-lg bg-lightPurple overflow-hidden ">
-            <div className="w-[260px] h-[270px] bg-white ">
+          <div
+            key={product.id}
+            className=" rounded-lg bg-lightPurple overflow-hidden "
+          >
+            <div className="w-[260px] h-[300px] relative flex justify-center items-center bg-white ">
               <Image
                 width={270}
                 height={340}
