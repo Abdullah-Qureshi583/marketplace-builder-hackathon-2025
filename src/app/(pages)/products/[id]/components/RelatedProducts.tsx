@@ -1,4 +1,5 @@
 "use client";
+import Imagecomponent from "@/components/project/Imagecomponent";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { Product } from "@/types/types";
@@ -100,15 +101,21 @@ export default function RelatedProducts({
         {relatedProducts?.map((product) => (
           <div
             key={product.id}
-            className=" rounded-lg bg-lightPurple overflow-hidden "
+            className="group rounded-lg bg-lightPurple overflow-hidden "
           >
-            <div className="w-[260px] h-[300px] relative flex justify-center items-center bg-white ">
-              <Image
-                width={270}
-                height={340}
-                src={urlFor(product.image).url()}
-                alt={`${product.name} Image`}
-                className="w-full hover:scale-95 object-cover"
+            <div className=" relative flex justify-center items-center bg-white ">
+              <Imagecomponent
+                imageBg="offWhite"
+                showHover={true}
+                image={product.image && product.image}
+                buttonPosition="rowTopLeft"
+                name={product.name}
+                price={
+                  product.price -
+                  product.price * (product.discountPercentage / 100)
+                }
+                description={product?.description || ""}
+                id={product.id}
               />
             </div>
             <div className="p-4 ">
@@ -129,3 +136,4 @@ export default function RelatedProducts({
     </div>
   );
 }
+
