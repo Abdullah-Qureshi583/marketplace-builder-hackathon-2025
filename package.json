@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "import-data": "node src/scripts/import-data.mjs"
+    "import-data": "node src/scripts/import-data.mjs",
+    "clear-data": "node src/scripts/clear-data.mjs",
+    "delete-item": "node src/scripts/delete-item.mjs"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.10.2",

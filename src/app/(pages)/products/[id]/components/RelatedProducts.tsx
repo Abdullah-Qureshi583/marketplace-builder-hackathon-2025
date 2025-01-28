@@ -1,6 +1,38 @@
+"use client";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import { Product } from "@/types/types";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
-export default function RelatedProducts() {
+export default function RelatedProducts({
+  relatedProductCategory,
+}: {
+  relatedProductCategory: string;
+}) {
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  useEffect(() => {
+    (async () => {
+      const query = `
+                        *[_type == "product" && defined(rating) && category->name == "${relatedProductCategory}"   && image != null ][0..3] {
+                            name,
+                            description,
+                            "id": _id,
+                            "category":category->name,
+                            discountPercentage,
+                            price,
+                            isFeaturedProduct,
+                            stockLevel,
+                            image,
+                            rating,
+                            "tags": tags[]->name
+                          }
+                      `;
+      console.log("The Query to fetch the specific product is : ", query);
+      const response: Product[] = await client.fetch(query);
+      setRelatedProducts(response);
+    })();
+  }, [relatedProductCategory]);
   const products = [
     {
       id: 1,
@@ -33,7 +65,7 @@ export default function RelatedProducts() {
   ];
 
   // product.rating
-  const renderStars = (rating:number) => {
+  const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 !== 0;
     const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
@@ -65,21 +97,28 @@ export default function RelatedProducts() {
         Related Products
       </h5>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <div key={product.id} className=" rounded-lg overflow-hidden">
-            <Image
-              width={270}
-              height={340}
-              src={product.image}
-              alt={product.title}
-              className="w-full hover:scale-95 object-cover"
-            />
-            <div className="p-4">
-              <div className="flex justify-between items-center">
-                <h3 className="text-lg font-medium ">{product.title}</h3>
-                <div className="mt-2">{renderStars(product.rating)}</div>
+        {relatedProducts?.map((product) => (
+          <div key={product.id} className=" rounded-lg bg-lightPurple overflow-hidden ">
+            <div className="w-[260px] h-[270px] bg-white ">
+              <Image
+                width={270}
+                height={340}
+                src={urlFor(product.image).url()}
+                alt={`${product.name} Image`}
+                className="w-full hover:scale-95 object-cover"
+              />
+            </div>
+            <div className="p-4 ">
+              <div className="flex justify-between items-center text-center">
+                <h3 className="text-lg font-medium ">{product.name}</h3>
               </div>
-              <p className=" font-semibold">{product.price}</p>
+              <div className="flex justify-between items-center">
+                <div className="mt-2">{renderStars(product.rating || 0)}</div>
+                <p className=" font-semibold">
+                  {product.price -
+                    product.price * (product.discountPercentage / 100)}
+                </p>
+              </div>
             </div>
           </div>
         ))}

@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import PinkButton from "../PinkButton";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -23,15 +23,17 @@ export default function Hero() {
               <h1 className="text-3xl md:text-5xl font-bold mt-3">
                 New Furniture Collection
                 <br />
-                Trends in 2020
+                Trends in 2025
               </h1>
               <p className="text-subText font-semibold mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
-                in est adipiscing in phasellus non in justo.
+                Explore a range of thoughtfully designed furniture that blends
+                comfort with modern aesthetics. Perfect for creating a cozy and
+                stylish living space.
               </p>
-              <div className="mt-7">
+
+              <Link href="/products" className="mt-7">
                 <PinkButton>Shop Now</PinkButton>
-              </div>
+              </Link>
             </div>
           </div>
           <div className="py-9 px-[.8rem]">

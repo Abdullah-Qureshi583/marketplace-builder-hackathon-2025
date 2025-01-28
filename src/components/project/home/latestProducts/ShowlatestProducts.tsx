@@ -36,7 +36,7 @@ const ShowlatestProducts = ({ tagName }: { tagName: string }) => {
     <div className="">
       <div className="flex flex-wrap mt-[58px] justify-center gap-6 gap-y-[120px] ">
         {products?.slice(0, 6).map((chair) => (
-          <div key={chair.id} className=" group  w-full md:w-[46%] lg:w-[30%]">
+          <div key={chair.id} className=" group min-w-[200px] w-full md:w-[46%] lg:w-[30%]">
             <div className="bg-chairBgOffWhite group-hover:bg-white h-[320px] flex justify-center items-center">
               <Imagecomponent
                 imageBg="offWhite"

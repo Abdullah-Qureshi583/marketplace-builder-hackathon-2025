@@ -13,9 +13,6 @@ export type Product = {
   tags?: string[];
 };
 
-
-
-
 export interface CartItemProps {
   name: string;
   price: number;

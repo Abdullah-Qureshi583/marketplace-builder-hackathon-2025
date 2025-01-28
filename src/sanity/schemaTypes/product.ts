@@ -62,16 +62,9 @@ export const product = {
     },
     {
       name: "category",
-      type: "string",
       title: "Category",
-      options: {
-        list: [
-          { title: "Chair", value: "Chair" },
-          { title: "Wood Chair", value: "woodChair" },
-          { title: "Plastic Chair", value: "plasticChair" },
-          { title: "Sofa", value: "Sofa" },
-        ],
-      },
+      type: "reference",
+      to: [{ type: "category" }],
       validation: (Rule: any) => Rule.required().error("Category is required"),
     },
     {
@@ -81,6 +74,8 @@ export const product = {
       to: [{ type: "brand" }], // Referencing the `brand` type
       description: "Select a brand for this product. Only one can be selected.",
     },
+    
+    
 
     {
       name: "tags",

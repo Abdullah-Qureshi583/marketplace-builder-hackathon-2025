@@ -81,7 +81,7 @@ const ShoppingCartLeft = () => {
                     </p>
                   </div>
                 </td>
-                <td className="p-4 ">${item?.price.toFixed(2)}</td>
+                <td className="p-4 ">${Number(item?.price).toFixed(2)}</td>
                 <td className="p-4">
                   <input
                     type="number"

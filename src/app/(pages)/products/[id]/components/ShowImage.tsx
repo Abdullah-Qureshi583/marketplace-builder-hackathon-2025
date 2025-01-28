@@ -8,9 +8,9 @@ import PinkButton from "@/components/project/PinkButton";
 import { CiHeart } from "react-icons/ci";
 import AddToCartFunction from "../../../../../components/project/AddToCartFunction";
 
-export default function ShowImage({ product }: { product: Product }) {
+export default function ShowImage({ product }: { product: Product | null }) {
   return (
-    <div className="flex  flex-col md:flex-row items-center md:items-start gap-8 md:p-8">
+    <div className="flex bg-dblLightPurple flex-col md:flex-row items-center md:items-start gap-8 ">
       {/* Left Section: Images */}
       <div className="flex  md:gap-5">
         {/* <div className=" flex-col gap-2  flex">
@@ -36,7 +36,7 @@ export default function ShowImage({ product }: { product: Product }) {
             className=" object-cover rounded-md"
           />
         </div> */}
-        <div className="flex justify-center items-center  w-[400px] h-[450px] ">
+        <div className="flex justify-center items-center bg-lightPurple  w-[400px] h-[450px] ">
           {product && (
             <Image
               width={375}
@@ -50,7 +50,7 @@ export default function ShowImage({ product }: { product: Product }) {
       </div>
 
       {/* Right Section: Product Details */}
-      <div className="flex flex-col gap-3 py-3">
+      <div className="flex flex-col gap-3 py-3 md:p-5">
         <h4 className="text-4xl font-semibold">{product?.name}</h4>
 
         <div className="flex items-center">
@@ -80,11 +80,12 @@ export default function ShowImage({ product }: { product: Product }) {
         <div className="flex items-center gap-4">
           <span className="text-base font-semibold text-darkTextBlue">
             $
-            {product?.price -
-              product?.price * (product?.discountPercentage / 100)}
+            {(product?.price || 0) -
+              (product?.price || 0) *
+                ((product?.discountPercentage || 0) / 100)}
           </span>
           <span className="text-base font-semibold text-pPink line-through">
-            {product?.discountPercentage > 0 && product?.price}
+            {(product?.discountPercentage || 0) > 0 && product?.price}
           </span>
         </div>
         <p className=" text-subText text-wrap font-semibold">
@@ -98,10 +99,11 @@ export default function ShowImage({ product }: { product: Product }) {
             name: product?.name as string,
             description: product?.description as string,
             image: product?.image,
-            price: (product?.price -
-              product?.price * (product?.discountPercentage / 100)) as number,
+            price: ((product?.price || 0) -
+              (product?.price || 0) *
+                ((product?.discountPercentage || 0) / 100)) as number,
             currency: "USD",
-            id: product?.id,
+            id: product?.id || " ",
           }}
         >
           <PinkButton>
@@ -120,8 +122,7 @@ export default function ShowImage({ product }: { product: Product }) {
 
           {product?.tags && (
             <p className="font-medium ">
-              Tags:
-              {product?.tags?.map((tag: string) => tag)}
+              Tags :{product?.tags?.map((tag: string) => tag).join(" ")}
             </p>
           )}
           <div className="flex gap-3 items-center">

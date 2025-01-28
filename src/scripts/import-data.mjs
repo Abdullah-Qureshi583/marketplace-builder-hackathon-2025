@@ -1,18 +1,27 @@
 import { createClient } from "@sanity/client";
 import axios from "axios";
 import dotenv from "dotenv";
-import { fileURLToPath } from "url";
-import path from "path";
+dotenv.config();
+const {
+  NEXT_PUBLIC_SANITY_PROJECT_ID, // Sanity project ID
+  NEXT_PUBLIC_SANITY_DATASET, // Sanity dataset (e.g., "production")
+  SANITY_API_TOKEN, // Sanity API token
+  NEXT_PUBLIC_SANITY_API_VERSION,
+} = process.env;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+// Check if the required environment variables are provided
+if (!NEXT_PUBLIC_SANITY_PROJECT_ID || !SANITY_API_TOKEN) {
+  console.error(
+    "Missing required environment variables. Please check your .env.local file."
+  );
+  process.exit(1); // Stop execution if variables are missing
+}
 
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  token: process.env.SANITY_API_TOKEN,
-  apiVersion: "2025-01-15",
+  projectId: NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: NEXT_PUBLIC_SANITY_DATASET || "production",
+  token: SANITY_API_TOKEN,
+  apiVersion: NEXT_PUBLIC_SANITY_API_VERSION || "2025-01-15",
   useCdn: false,
 });
 
@@ -33,14 +42,51 @@ async function uploadImageToSanity(imageUrl) {
   }
 }
 
+// Function to fetch tag references from Sanity
+async function fetchTagReferences(tags) {
+  try {
+    // Query to find tags matching the provided array
+    const query = `*[_type == "tag" && name in $tags]{_id}`;
+    const existingTags = await client.fetch(query, { tags });
+
+    return existingTags.map((tag) => ({
+      _type: "reference",
+      _ref: tag._id,
+    }));
+  } catch (error) {
+    console.error("Error fetching tag references array:", error);
+    return [];
+  }
+}
+
+async function fetchCategoryReference(category) {
+  try {
+    const query = `*[_type == "category" && name == $category]{_id}`;
+    const existingCategory = await client.fetch(query, { category });
+    return { _type: "reference", _ref: existingCategory[0]?._id };
+  } catch (error) {
+    console.error("Error fetching category references:", error);
+    return [];
+  }
+}
+
+async function fetchBrandReference(brand) {
+  try {
+    const query = `*[_type == "brand" && name == $brand]{_id}`;
+    const existingBrand = await client.fetch(query, { brand });
+    return { _type: "reference", _ref: existingBrand[0]?._id };
+  } catch (error) {
+    console.error("Error fetching brand reference:", error);
+    return [];
+  }
+}
+
 // Function to import product data and upload to Sanity
 async function importData() {
   try {
     console.log("Fetching Product Data From API...");
 
-    const response = await axios.get(
-      "https://next-ecommerce-template-4.vercel.app/api/product"
-    );
+    const response = await axios.get("http://localhost:3000/api/product");
     const products = response.data.products;
 
     for (const item of products) {
@@ -52,29 +98,21 @@ async function importData() {
         imageRef = await uploadImageToSanity(item.imagePath);
       }
 
-      // Fetch the brand reference if the brand name exists
-      let brandRef = null;
-      if (item.brand) {
-        const brandQuery = `*[_type == "brand" && name == "${item.brand}"][0]`;
-        const brandResult = await client.fetch(brandQuery);
-        if (brandResult) {
-          brandRef = {
-            _type: "reference",
-            _ref: brandResult._id, // Reference the brand by its ID
-          };
-        }
-      }
-
-      // Prepare the product data to be uploaded to Sanity
+      const tagReferences = item.tags
+        ? await fetchTagReferences(item.tags)
+        : [];
+      console.log("the tag references after fetch are : ", tagReferences);
+      let categoryRef = await fetchCategoryReference(item.category);
+      let brandRef = await fetchBrandReference(item.brand);
       const sanityItem = {
-        _type: "product",
+        _type: "product", // Corrected tag
         name: item.name,
-        category: item.category || null,
         price: item.price,
         description: item.description || "",
         discountPercentage: item.discountPercentage || 0,
         stockLevel: item.stockLevel || 0,
         isFeaturedProduct: item.isFeaturedProduct,
+        rating: item.rating || 1,
         image: imageRef
           ? {
               _type: "image",
@@ -84,16 +122,11 @@ async function importData() {
               },
             }
           : undefined,
-        tags: item.tags
-          ? item.tags.map((tagId) => ({
-              _type: "reference",
-              _ref: tagId,
-            }))
-          : [], // Default to an empty array if no tags
-        brand: brandRef, // Add the brand reference to the product data
+        category: categoryRef,
+        brand: brandRef,
+        tags: tagReferences,
       };
 
-      console.log(`Uploading ${sanityItem.category} - ${sanityItem.name} to Sanity!`);
       const result = await client.create(sanityItem);
       console.log(`Uploaded Successfully: ${result._id}`);
       console.log("----------------------------------------------------------");

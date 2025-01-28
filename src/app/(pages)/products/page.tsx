@@ -139,6 +139,7 @@ const ProductsPage = () => {
         image,
         rating
       }`;
+      console.log("The query to fetch all products is : ", query)
       const response: Product[] = await client.fetch(query);
       setProducts(response);
     })();

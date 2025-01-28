@@ -26,10 +26,7 @@ const links: LinkType[] = [
     title: "Products",
     href: "/products",
   },
-  {
-    title: "Blog",
-    href: "/blogs",
-  },
+  
   {
     title: "About",
     href: "/aboutUs",

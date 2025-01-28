@@ -57,10 +57,11 @@ const TrendingProducts = () => {
     []
   );
   useEffect(() => {
+    // fetch the trending products
     (async () => {
       const query = `
               *[_type == "product" && image != null  && "trendingProduct" in tags[]->name && discountPercentage == 23]
-                | order(_updatedAt desc)[0..8] {
+                | order(_updatedAt desc)[0..1] {
                   name,
                   description,
                   "id": _id,

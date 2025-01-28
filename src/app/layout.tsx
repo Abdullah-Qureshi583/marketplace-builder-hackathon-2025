@@ -1,26 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { Josefin_Sans } from "next/font/google";
 
 import Navbar from "@/components/project/Navbar";
 import Header from "@/components/project/Header";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "@/components/project/Footer";
 import ImageAutoSlider from "@/components/project/ImageAutoSlider";
 import AddToCartSidebar from "@/components/project/AddToCartSidebar";
 import ShoppingCartProvider from "@/components/project/ShoppingCartProvider";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 
@@ -37,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ClerkProvider>
-        <body className={josefinSans.className}>
+        <body className={` font-sans ${josefinSans.className}`}>
           <ShoppingCartProvider>
             <AddToCartSidebar />
             <Header />
