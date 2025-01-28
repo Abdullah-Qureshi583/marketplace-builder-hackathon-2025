@@ -22,7 +22,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     setURL(
       myhost === "localhost:3000"
         ? "http://localhost:3000"
-        : "https://stripe-payment-one-nu.vercel.app"
+        : "https://hekto-marketplace-builder.vercel.app"
     );
   }, []);
 
