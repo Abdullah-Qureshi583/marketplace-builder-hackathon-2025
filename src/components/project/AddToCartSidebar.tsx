@@ -43,7 +43,7 @@ const AddToCartSidebar = () => {
                       className="flex flex-col cursor-pointer items-center bg-dblLightPurple  rounded-md w-full"
                     >
                       <div className=" w-full flex justify-start items-center md:px-2">
-                        <div className="h-20 md:h-24 w-20 md:w-24 bg-lightPurple rounded-md aspect-square flex justify-center items-center ">
+                        <div className="h-20 md:h-24 w-20 md:w-24 overflow-hidden bg-lightPurple rounded-md aspect-square flex justify-center items-center ">
                           <Image
                             src={
                               urlFor(cartItem.image as any).url() ||

@@ -65,7 +65,7 @@ const ShoppingCartLeft = () => {
             {Object.values(cartDetails || {}).map((item) => (
               <tr key={item?.id} className="border-b">
                 <td className="p-4 flex items-center space-x-4">
-                  <div className="h-24 w-24 bg-lightPurple rounded-md aspect-square flex justify-center items-center">
+                  <div className="h-24 w-24 overflow-hidden bg-lightPurple rounded-md aspect-square flex justify-center items-center">
                     <Image
                       width={96}
                       height={96}

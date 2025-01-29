@@ -20,7 +20,7 @@ export default function LeftMoreItems() {
           className="flex flex-col  gap-y-4"
         >
           <div className="flex justify-between">
-            <div className="h-20 md:h-24 w-20 md:w-24 bg-lightPurple rounded-md aspect-square flex justify-center items-center ">
+            <div className="h-20 md:h-24 w-20 md:w-24 overflow-hidden bg-lightPurple rounded-md aspect-square flex justify-center items-center ">
               <Image
                 src={urlFor(cartItem.image as any).url() || "/placeholder.jpg"}
                 width={96}
