@@ -38,7 +38,6 @@ const TopCategories = () => {
       <div className="flex flex-wrap gap-10 mt-[56px] justify-center">
         {topCategories.slice(0, 4).map((item) => (
           <div
-            onClick={() => router.push(item.id)}
             key={item.id}
             className="flex flex-col gap-3   w-[230px] group items-center "
           >

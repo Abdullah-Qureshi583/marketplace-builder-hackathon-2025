@@ -6,6 +6,7 @@ import PinkButton from "../PinkButton";
 import SecondaryHeading from "../SecondaryHeading";
 import { useState } from "react";
 import { IoIosCheckmark } from "react-icons/io";
+import Link from "next/link";
 
 const links = [
   {
@@ -91,7 +92,9 @@ export default function DiscountItems() {
           </div>
 
           {/* Button */}
-          <PinkButton>Shop Now</PinkButton>
+          <Link href="/products">
+            <PinkButton>Shop Now</PinkButton>
+          </Link>
         </div>
         <div className="py-9 order-1 md:order-2   px-[.8rem]">
           <Image
