@@ -22,7 +22,7 @@ export default function ShopList({ products }: { products: Product[] }) {
           className="flex  bg-dblLightPurple flex-col md:flex-row w-[313px] md:w-full mx-auto items-center   gap-6"
         >
           {/* Image Section */}
-          <div className="w-[310px] h-[310px] flex justify-center items-center p-2 bg-lightPurple ">
+          <div className="w-[310px] h-[310px] overflow-hidden flex justify-center items-center p-2 bg-lightPurple ">
             <Image
               className="object-cover "
               src={urlFor(chair.image).url()}

@@ -36,7 +36,7 @@ export default function ShowImage({ product }: { product: Product | null }) {
             className=" object-cover rounded-md"
           />
         </div> */}
-        <div className="flex justify-center items-center bg-lightPurple  w-[400px] h-[450px] ">
+        <div className="flex overflow-hidden justify-center items-center bg-lightPurple  w-[400px] h-[450px] ">
           {product && (
             <Image
               width={375}

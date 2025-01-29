@@ -52,6 +52,7 @@ async function fetchTagReferences(tags) {
     return existingTags.map((tag) => ({
       _type: "reference",
       _ref: tag._id,
+      _key:tag._id
     }));
   } catch (error) {
     console.error("Error fetching tag references array:", error);

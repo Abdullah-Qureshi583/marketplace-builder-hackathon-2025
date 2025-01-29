@@ -55,7 +55,7 @@ const Imagecomponent = ({
               : ""
       }   flex items-center flex-grow justify-center  p-3 `}
     >
-      <div className="w-[230px]  h-[230px] flex justify-center items-center">
+      <div className="w-[230px]  overflow-hidden h-[230px] flex justify-center items-center">
         <Image
           className=" object-cover"
           height={500}

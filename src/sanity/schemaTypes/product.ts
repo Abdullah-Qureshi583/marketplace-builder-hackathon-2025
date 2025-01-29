@@ -85,10 +85,9 @@ export const product = {
       of: [{ type: "reference", to: [{ type: "tag" }] }],
       options: {
         layout: "tags", // This makes the tags look like small badges
-      },
+      }
 
-      validation: (Rule: any) =>
-        Rule.required().min(1).error("At least one tag is required."),
+      
     },
   ],
 };
