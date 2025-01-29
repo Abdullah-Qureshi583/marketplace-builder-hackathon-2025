@@ -10,14 +10,19 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import PinkButton from "@/components/project/PinkButton";
 import Link from "next/link";
+import TogglePage from "./components/TogglePage";
 const ProductsPage = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search")?.toLocaleLowerCase();
 
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [queryResponse, setQueryResponse] = useState<Product[]>([]);
   const [toggleFilterSidebar, setToggleFilterSidebar] = useState(false);
   const [viewType, setViewType] = useState<string>("grid");
   const [productFilter, setProductFilter] = useState<any>({});
   const [products, setProducts] = useState<Product[]>([]);
+  console.log("current page: ", currentPage);
 
   useEffect(() => {
     const isSearchingForFeaturedProducts = search?.includes("feature");
@@ -120,6 +125,7 @@ const ProductsPage = () => {
               }
     `;
 
+    // fetching all the products and also filtering them
     (async () => {
       const query = `*[
         _type == "product" &&
@@ -127,7 +133,7 @@ const ProductsPage = () => {
         image != null
         ${selectedProductstoFilter}
         ${filterBySearchBar}
-      ] | order(_updatedAt desc)[0..11] {
+      ] | order(_updatedAt desc) {
         name,
         description,
         "id": _id,
@@ -139,11 +145,20 @@ const ProductsPage = () => {
         image,
         rating
       }`;
-      console.log("The query to fetch all products is : ", query)
       const response: Product[] = await client.fetch(query);
-      setProducts(response);
+      setTotalPages(Math.ceil(response.length / 12));
+      setQueryResponse(response);
     })();
   }, [search, productFilter]);
+
+  // set the specific product by per page
+  useEffect(() => {
+    const response = queryResponse.slice(
+      (currentPage - 1) * 12,
+      currentPage * 12
+    );
+    setProducts(response);
+  }, [currentPage, queryResponse]);
 
   return (
     <div>
@@ -186,6 +201,11 @@ const ProductsPage = () => {
           </div>
         )}
       </div>
+      <TogglePage
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };
@@ -199,3 +219,14 @@ const Products = () => {
 };
 
 export default Products;
+// curr 1 = 0 - 12
+// curr 2 = 12 - 23
+
+// 1 1-1 = 0
+// 1*12 = 0
+
+// 2 2-1 = 1
+// 1 * 12 = 12
+
+// 3 3-1 = 2
+// 2*12 = 24

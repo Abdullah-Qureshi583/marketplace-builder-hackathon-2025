@@ -8,8 +8,8 @@ export default function CalcShipping({
   searchParams: { country: string; city: string; postalCode: string };
 }) {
   return (
-    <div className="container mx-auto p-4 max-w-[1180px] flex justify-center items-center">
-      <div className="grid grid-cols-1 w-full md:grid-cols-3 gap-6">
+    <div className=" flex justify-center items-center">
+      <div className="grid grid-cols-1 w-full md:grid-cols-3 gap-y-6 md:gap-x-6">
         {/* Left Section */}
         <CalcShipLeft 
           searchParams={{

@@ -23,7 +23,7 @@ const links: LinkType[] = [
     href: "/",
   },
   {
-    title: "Products",
+    title: "Shop",
     href: "/products",
   },
   
@@ -39,10 +39,10 @@ const links: LinkType[] = [
     title: "FAQ",
     href: "/faq",
   },
-  {
-    title: "My Account",
-    href: "/login",
-  },
+  // {
+  //   title: "My Account",
+  //   href: "/login",
+  // },
 ];
 
 const Navbar = () => {

@@ -70,7 +70,7 @@ export default function CalcShipLeft({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="col-span-2 bg-dblLightPurple px-8 py-16 h-fit"
+      className="col-span-2 bg-dblLightPurple px-2 md:px-8 py-16 h-fit"
     >
       <div className="flex flex-col gap-4 mb-24">
         <div className="flex flex-col md:flex-row justify-center md:justify-between items-center">

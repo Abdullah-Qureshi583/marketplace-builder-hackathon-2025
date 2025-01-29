@@ -34,36 +34,6 @@ export default function RelatedProducts({
       setRelatedProducts(response);
     })();
   }, [relatedProductCategory]);
-  const products = [
-    {
-      id: 1,
-      title: "Mens Fashion Wear",
-      price: "$43.00",
-      image: "/images/productD/related/one.png", // Replace with your image URL
-      rating: 5,
-    },
-    {
-      id: 2,
-      title: "Women's Fashion",
-      price: "$67.00",
-      image: "/images/productD/related/two.png", // Replace with your image URL
-      rating: 5,
-    },
-    {
-      id: 3,
-      title: "Wok Dummy Fashion",
-      price: "$62.00",
-      image: "/images/productD/related/three.png", // Replace with your image URL
-      rating: 4.5,
-    },
-    {
-      id: 4,
-      title: "Top Wall Digital Clock",
-      price: "$51.00",
-      image: "/images/productD/related/four.png", // Replace with your image URL
-      rating: 4,
-    },
-  ];
 
   // product.rating
   const renderStars = (rating: number) => {
@@ -136,4 +106,3 @@ export default function RelatedProducts({
     </div>
   );
 }
-

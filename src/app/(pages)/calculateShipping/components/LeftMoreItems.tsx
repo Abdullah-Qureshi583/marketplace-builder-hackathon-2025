@@ -7,43 +7,7 @@ import { useShoppingCart } from "use-shopping-cart";
 export default function LeftMoreItems() {
   const router = useRouter();
   const { cartDetails } = useShoppingCart();
-  const products = [
-    {
-      image: "/images/calculateShipping/first.png",
-      title: "Ut diam consequat",
-      color: "Brown",
-      size: "XL",
-      price: "$32.00",
-    },
-    {
-      image: "/images/calculateShipping/second.png",
-      title: "Ut diam consequat",
-      color: "Brown",
-      size: "XL",
-      price: "$32.00",
-    },
-    {
-      image: "/images/calculateShipping/third.png",
-      title: "Ut diam consequat",
-      color: "Brown",
-      size: "XL",
-      price: "$32.00",
-    },
-    {
-      image: "/images/calculateShipping/fourth.png",
-      title: "Ut diam consequat",
-      color: "Brown",
-      size: "XL",
-      price: "$32.00",
-    },
-    {
-      image: "/images/calculateShipping/fifth.png",
-      title: "Ut diam consequat",
-      color: "Brown",
-      size: "XL",
-      price: "$32.00",
-    },
-  ];
+  
 
   return (
     <div className=" flex flex-col gap-4 w-full  ">
@@ -53,9 +17,9 @@ export default function LeftMoreItems() {
           onClick={() => {
             router.push(`/products/${cartItem.id}`);
           }}
-          className="flex flex-col gap-y-4"
+          className="flex flex-col  gap-y-4"
         >
-          <div className="flex">
+          <div className="flex justify-between">
             <div className="h-20 md:h-24 w-20 md:w-24 bg-lightPurple rounded-md aspect-square flex justify-center items-center ">
               <Image
                 src={urlFor(cartItem.image as any).url() || "/placeholder.jpg"}
@@ -65,7 +29,7 @@ export default function LeftMoreItems() {
               />
             </div>
 
-            <div className="ml-3 max-w-[200px] flex flex-col justify-center">
+            <div className="ml-3 max-w-[110px] md:max-w-[200px] flex flex-col justify-center">
               <h3 className="text-lg text-nowrap overflow-hidden text-ellipsis">
                 {cartItem?.name}
               </h3>
@@ -74,7 +38,7 @@ export default function LeftMoreItems() {
               </p>
             </div>
             {/* price */}
-            <div className="py-1 text-lg text-darkTextBlue font-semibold">
+            <div className="py-1 text-base text-darkTextBlue font-semibold">
               ${cartItem?.price}
             </div>
           </div>

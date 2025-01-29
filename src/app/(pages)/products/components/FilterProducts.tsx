@@ -27,8 +27,8 @@ const FilterProducts = ({
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-[1180px] flex mb-16 flex-col items-start gap-5 xl:flex-row md:justify-between w-full xl:items-center">
-      <div>
+    <div className="sticky top-16 z-[40] flex mb-16 flex-col items-start gap-5 xl:flex-row md:justify-between w-full xl:items-center">
+      <div className="hidden md:block">
         <h1 className="text-2xl font-bold text-darkTextBlue">
           Ecommerce Accessories & Fashion item
         </h1>
@@ -36,7 +36,7 @@ const FilterProducts = ({
           About 9,620 results (0.62 seconds)
         </p>
       </div>
-      <div className="flex flex-col md:flex-row md:items-center gap-5 text-darkTextBlue/80">
+      <div className="flex flex-row md:items-center justify-between gap-5 w-full md:w-auto px-2 md:px-0 text-darkTextBlue/80">
         <Button
           variant="outline"
           className="bg-dblLightPurple"
@@ -62,22 +62,24 @@ const FilterProducts = ({
               <FaListUl />
             </button>
           </div>
-          <Select
-            value={selectedView}
-            onValueChange={(value) => handleViewChange(value)}
-          >
-            <SelectTrigger className="w-[150px]">
-              <SelectValue
-                placeholder={
-                  selectedView.charAt(0).toUpperCase() + selectedView.slice(1)
-                }
-              />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="grid">Grid</SelectItem>
-              <SelectItem value="list">List</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="hidden md:block">
+            <Select
+              value={selectedView}
+              onValueChange={(value) => handleViewChange(value)}
+            >
+              <SelectTrigger className="w-[150px]">
+                <SelectValue
+                  placeholder={
+                    selectedView.charAt(0).toUpperCase() + selectedView.slice(1)
+                  }
+                />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="grid">Grid</SelectItem>
+                <SelectItem value="list">List</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
     </div>

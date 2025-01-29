@@ -4,9 +4,9 @@ import LeftMoreItems from "./LeftMoreItems";
 
 const CalcShipRight = () => {
   return (
-    <div className="flex flex-col gap-10">
-      <LeftMoreItems />
+    <div className="flex flex-col  gap-10">
       <CartSubTotals />
+      <LeftMoreItems />
     </div>
   );
 };

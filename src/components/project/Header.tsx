@@ -30,14 +30,14 @@ const Header = () => {
   const { handleCartClick } = useShoppingCart();
   return (
     <div className="bg-pViolet text-textOffwhite">
-      <div className="container mx-auto max-w-[1180px] flex justify-center md:justify-between items-center px-4 py-2 md:py-3.5">
+      <div className="container mx-auto max-w-[1180px] flex justify-between items-center px-4 py-2 md:py-3.5">
         {/* Left Section - Email and Phone */}
-        <div className="flex space-x-4 lg:space-x-8 ">
+        <div className=" hidden md:flex space-x-4 lg:space-x-8 ">
           <div className="flex items-center">
             <FaEnvelope className="mr-2" />
             <span>mhhasanul@gmail.com</span>
           </div>
-          <div className="hidden md:flex items-center">
+          <div className="flex items-center">
             <FaPhoneAlt className="mr-2" />
             <span>(12345)67890</span>
           </div>
@@ -86,11 +86,20 @@ const Header = () => {
             </Link>
             <div
               onClick={() => handleCartClick()}
-              className="flex items-center "
+              className="flex items-center cursor-pointer "
             >
               <FaShoppingCart className="ml-1" />
             </div>
           </div>
+        </div>
+
+        {/* in small devices */}
+        <div className=" md:hidden flex items-center">
+          <FaEnvelope className="mr-2" />
+          <span>mhhasanul@gmail.com</span>
+        </div>
+        <div onClick={() => handleCartClick()} className="cursor-pointer md:hidden flex items-center ">
+          <FaShoppingCart className="ml-1" />
         </div>
       </div>
     </div>
