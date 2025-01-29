@@ -27,7 +27,7 @@ const FilterProducts = ({
   };
 
   return (
-    <div className="sticky top-16 z-[40] flex mb-16 flex-col items-start gap-5 xl:flex-row md:justify-between w-full xl:items-center">
+    <div className="sticky top-16 z-[40] bg-white  py-2 flex mb-16 flex-col items-start gap-5 xl:flex-row md:justify-between w-full xl:items-center">
       <div className="hidden md:block">
         <h1 className="text-2xl font-bold text-darkTextBlue">
           Ecommerce Accessories & Fashion item
